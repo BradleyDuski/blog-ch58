@@ -10,9 +10,29 @@
           <a class="nav-link active" aria-current="page" href="{% url 'homeTwo' %}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="% url 'about' %">About me</a>
+          <a class="nav-link active" href="{% url 'about' %}">About me</a>
         </li>
-    
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+       <input type="submit" class="nav-link active" value="Log Out">
       </form>
+      </li>
+      {% else %}
+         <li class="nav-item">
+          <a class="nav-link active" href="{% url 'login' %}">Log in</a>
+          </li>
+         <li class="nav-item">
+          <a class="nav-link active" href="#">Sign Up</a>
+          </li>
+        {% endif %}
+        </ul>
+        {% if user.is_authenticated %}
+        <div class="d-flex">"
+          <span class="badge rounded-pill text-bg-success">{{user}}</span>
+        </div>
+        {% endif %}
     </div>
-  </div>
+    </div>
+  </nav>
