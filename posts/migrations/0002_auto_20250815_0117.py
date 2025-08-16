@@ -20,7 +20,7 @@ def populate_status(apps, schemaeditor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('posts', '0001_initial'),
+        ('posts', '0002_status'),
     ]
 
     operations = [
