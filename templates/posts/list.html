@@ -6,9 +6,25 @@ Post List
 {% endblock %}
 
 {% block content %}
-  {% for item in post_list $}
-    <h1>{{item.title}}</h1>
-    <span>{{item.status.name}}</span>
-        {% endfor %}
-   
+<div class="container" style="margin-top: 15px;">
+  {% for item in post_list %}
+  <div class="card mb-4 shadow-sm">
+      <div class="card-header bg-primary text-white">
+        <h2 class="card-title"><a href="{% url 'post_detail' item.id %}" class="card-title" style="text-decoration: none;"></h2>
+        <h6 class="card-subtitle">{{item.subtitle}}</h6>
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{item.description}}</p>
+          <hr>
+          <div class="mb-3">
+            {{item.body|safe}}
+        </div>
+        </div>
+        <div class="card-footer d-flex justify-content-between text-muted">
+          <small>Created on: {{item.created_on|date:"F d, Y \a\t H:i A"}}</small>
+          <small>By: {{item.author.username}}</small>
+          </div>
+        </div>
+ {% endfor %}
+   </div>
 {% endblock %}
